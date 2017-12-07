@@ -25,9 +25,38 @@ export default {
                 type : types,
                 price : cal_stats * 10000,
                 inventory : Math.floor((Math.random()*10)+1),
-                isSoldOut : false
+                isSoldOut : false,
+                isFront : true
             })
-        } 
+        }
+    },
+    [Constant.SEARCH_POKEMON] : (state, payload) => {
+        state.pokemonlist = [];
+        let cal_stats = 0;
+        let types = "";
+
+        for (let s of payload.pokemon.stats) {
+            cal_stats += s.base_stat;
+        }
+
+        if (payload.pokemon.types.length == 2) {
+            types = payload.pokemon.types[0].type.name + ", " +payload.pokemon.types[1].type.name;
+        } else {
+            types = payload.pokemon.types[0].type.name
+        }
+
+        state.pokemonlist.push({
+            no : payload.pokemon.id, 
+            name : payload.pokemon.name, 
+            height : payload.pokemon.height, 
+            weight : payload.pokemon.weight,
+            sprite : payload.pokemon.sprites,
+            type : types,
+            price : cal_stats * 10000,
+            inventory : Math.floor((Math.random()*10)+1),
+            isSoldOut : false,
+            isFront : true
+        })
     },
     [Constant.ADD_TO_CART] : (state, payload) => {
         let overlap = state.cartlist.find((c) => { // 장바구니에 이미 상품을 추가했는지 검사
@@ -35,7 +64,7 @@ export default {
         });
 
         if (!overlap) { // 처음 추가한다면
-            let index = payload.pokemon.no-1;
+            let index = payload.index;
 
             if (state.pokemonlist[index].inventory > 0) { // 재고가 남아있을 경우
                 state.cartlist.push({ no : payload.pokemon.no, name : payload.pokemon.name, price : payload.pokemon.price, quantity : 1, quantityStatus : "" });
@@ -52,17 +81,25 @@ export default {
         let index = 0;
 
         for (let c of payload.cartlist) {
-            index = c.no-1;
-
             if ((state.pokemonlist[index].inventory-c.quantity) < 0 || c.quantity <= 0) { // 재고에서 구매개수를 뺐을 때 구매개수가 더 많을 경우 (초과구매)
                 isValid = false; // 반복문 수행 중 한 품목이라도 품절이 될 경우 false로 변경
                 break;
             }
+
+            index++;
         }
 
         if (isValid) {
             for (let c of payload.cartlist) {
-                index = c.no-1; // 포켓몬 번호(no)-1는 인덱스 넘버와 같음
+                index = 0;
+
+                for (let p of state.pokemonlist) { // 인덱스 넘버 찾기
+                    if (p.name == c.name) {
+                        break;
+                    }
+
+                    index++;
+                }
 
                 if (state.pokemonlist[index].inventory >= 0) { // 재고가 남았을 때 / 재고만큼 구매했을 때
                     state.pokemonlist[index].inventory -= c.quantity; // 개수만큼 삭감
@@ -86,4 +123,7 @@ export default {
     [Constant.RIGHT_QUANTITY] : (state, payload) => {
         state.cartlist[payload.index].quantityStatus = "올바른 수량을 입력하셨습니다.";
     },
+    [Constant.TOGGLE_POSE] : (state, payload) => {
+        state.pokemonlist[payload.index].isFront = !state.pokemonlist[payload.index].isFront;
+    }
 }

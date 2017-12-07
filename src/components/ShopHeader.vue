@@ -8,7 +8,8 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
 .header { 
     width: 100%; height: 70px;
     line-height: 70px;
@@ -17,6 +18,7 @@
     background-color: #fff;
     border-bottom: 1px solid #4fc08d;
     position: fixed;
+    z-index: 9999;
     top: 0;
 }
 

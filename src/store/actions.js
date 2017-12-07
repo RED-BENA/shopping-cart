@@ -4,9 +4,10 @@ export default {
     [Constant.LOAD_POKEMON] : (store, payload) => {
         store.commit(Constant.LOAD_POKEMON, payload);
     },
+    [Constant.SEARCH_POKEMON] : (store, payload) => {
+        store.commit(Constant.SEARCH_POKEMON, payload);
+    },
     [Constant.ADD_TO_CART] : (store, payload) => {
-        // console.log(store);
-        // console.log(payload);
         store.commit(Constant.ADD_TO_CART, payload);
     },
     [Constant.DELETE_AT_CART] : (store, payload) => {
@@ -23,5 +24,8 @@ export default {
     },
     [Constant.RIGHT_QUANTITY] : (store, payload) => {
         store.commit(Constant.RIGHT_QUANTITY, payload);
+    },
+    [Constant.TOGGLE_POSE] : (store, payload) => {
+        store.commit(Constant.TOGGLE_POSE, payload);
     }
 }

@@ -29,14 +29,14 @@
                     </td>
                         
                     <td>
-                        <button class="products__btn" @click="deleteAtCart(index)">삭제</button>
+                        <button class="product__btn" @click="deleteAtCart(index)">삭제</button>
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="4">
                         합계금액 : {{ numberWithCommas(getSum(this.cartlist)) }}
-                        <button type="submit" class="products__btn" @click="checkout">Checkout</button>
+                        <button type="submit" class="product__btn" @click="checkout">Checkout</button>
                     </td>
                 </tr>
             </table>
@@ -94,6 +94,9 @@ export default {
                 this.validQuantity = true;
             }
         },
+        getPokemonIndex(p) {
+            
+        },
         getQuantityStatus() {
             return this.quantityStatus;
         },
@@ -128,34 +131,58 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$green: #4fc08d;
 
 .like-list {
     padding: 20px;
+
+    h1 {
+        color: $green;
+        margin-bottom: 20px;
+    }
+
+    &__table, tr, td {
+        border: 1px solid $green;
+        border-collapse: collapse;
+    }
+
+    &__table {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    &__table td {
+        padding: 5px;
+    }
+
+    &__table td input[type=number] {
+        width: 70px;
+        text-align: center;
+    }
 }
 
-.like-list h1 {
-    color: #4fc08d;
-    margin-bottom: 20px;
-}
-
-.like-list__table, .checkout__table, tr, td {
-    border: 1px solid #4fc08d;
+.checkout__table  {
+    border: 1px solid $green;
     border-collapse: collapse;
-}
-
-.like-list__table, .checkout__table {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.like-list__table td, .checkout__table td {
+.checkout__table td {
     padding: 5px;
 }
 
-.like-list__table td input[type=number] {
-    width: 70px;
-    text-align: center;
+.product__btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #fff;
+    background-color: $green;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
 }
 </style>
