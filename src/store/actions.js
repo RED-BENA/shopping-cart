@@ -27,5 +27,8 @@ export default {
     },
     [Constant.TOGGLE_POSE] : (store, payload) => {
         store.commit(Constant.TOGGLE_POSE, payload);
+    },
+    [Constant.CHANGE_OFFSET] : (store, payload) => {
+        store.commit(Constant.CHANGE_OFFSET, payload);
     }
 }

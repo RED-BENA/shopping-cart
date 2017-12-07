@@ -72,7 +72,7 @@
 
 <script>
 import Constant from '../constant'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     data() {
@@ -80,7 +80,13 @@ export default {
             isCheckout : false
         }
     },
-    computed : mapState(['pokemonlist', 'cartlist', 'checkoutResult']),
+    computed : {
+        ... mapState([
+            'pokemonlist',
+            'cartlist',
+            'checkoutResult'
+        ]),
+    },
     methods : {
         changeQuantity(inventory, index) {
             if (this.cartlist[index].quantity > inventory) { // 수량 초과
@@ -93,9 +99,6 @@ export default {
                 this.$store.dispatch(Constant.RIGHT_QUANTITY, { index, quantityStatus : this.cartlist[index].quantityStatus });
                 this.validQuantity = true;
             }
-        },
-        getPokemonIndex(p) {
-            
         },
         getQuantityStatus() {
             return this.quantityStatus;

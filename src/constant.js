@@ -8,5 +8,6 @@ export default {
     TOO_MUCH_QUANTITY : "tooMuchQuantity", // 수량 초과 입력  
     TOO_LOW_QUANTITY : "tooLowQuantity", // 수량 미달 입력
     RIGHT_QUANTITY : "rightQuantity", // 올바른 수량 입력
-    TOGGLE_POSE : "togglePose" // 포즈 변화 (front, back)
+    TOGGLE_POSE : "togglePose", // 포즈 변화 (front, back)
+    CHANGE_OFFSET : "changeOffset" // offset 변경
 }

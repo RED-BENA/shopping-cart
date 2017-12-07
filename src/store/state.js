@@ -3,5 +3,6 @@ import Constant from '../constant';
 export default {
     pokemonlist : [],
     cartlist : [],
-    checkoutResult : []
+    checkoutResult : [],
+    offset : 0,
 }

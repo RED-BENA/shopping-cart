@@ -125,5 +125,8 @@ export default {
     },
     [Constant.TOGGLE_POSE] : (state, payload) => {
         state.pokemonlist[payload.index].isFront = !state.pokemonlist[payload.index].isFront;
+    },
+    [Constant.CHANGE_OFFSET] : (state, payload) => {
+        state.offset = payload.offset;
     }
 }

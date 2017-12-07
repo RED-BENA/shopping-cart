@@ -1,19 +1,19 @@
 <template>
     <div id="cartlistapp">
         <shop-header></shop-header>
-        <pokemon-list></pokemon-list>
+        <products></products>
         <cart-list></cart-list>
     </div>
 </template>
 
 <script>
 import ShopHeader from './ShopHeader.vue';
-import PokemonList from './PokemonList.vue';
+import Products from './Products.vue';
 import CartList from './CartList.vue';
 
 export default {
     name : 'shop',
-    components : { ShopHeader, PokemonList, CartList }
+    components : { ShopHeader, Products, CartList }
 }
 </script>
 
