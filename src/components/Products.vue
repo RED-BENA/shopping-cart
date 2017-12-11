@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="products">
                 <v-select :on-change="search" class="products__search" :value.sync="selectedPokemon" :options="pokemon_info"></v-select>
-                <pokemon-list></pokemon-list>
+                <pokemon-list :is-pokemon-loaded="isPokemonLoaded"></pokemon-list>
                 
                 <button class="products__btn--big" @click="getPokemons(false)">10마리 더보기</button>
             </div>

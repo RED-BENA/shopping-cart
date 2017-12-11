@@ -42,7 +42,6 @@ export default {
             pokemon_url : [],
             pokemon_info : [], // 포켓몬의 번호/이름
             pokemons : [], // api에서 로딩된 포켓몬들
-            isPokemonLoaded : false,
             pose : "",
         }
     },
@@ -55,6 +54,7 @@ export default {
             return "Back";
         }
     },
+    props : [ 'isPokemonLoaded' ],
     methods : {
         addToCart : function(index) { // 장바구니에 아이템 추가
             this.$store.dispatch(Constant.ADD_TO_CART, { pokemon : this.pokemonlist[index], index : index })
